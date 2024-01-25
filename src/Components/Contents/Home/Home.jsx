@@ -3,13 +3,13 @@ import { motion, useAnimation } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { profileSummary } from "../../../Services/apis/profileService";
-import { decode } from "../../../Services/jwtDecoder";
+import { decode } from "../../../Services/JwtDecoder.jsx";
 import HomeSummaryCard from "./HomeSummaryCard";
 import QuickRequests from "./QuickRequest";
 
 const Home = () => {
   const [profileData, setProfileData] = useState(null);
-  const [showComponent, setShowComponent] = useState(true)
+  const [showComponent, setShowComponent] = useState(true);
   const dispatch = useDispatch();
   const controlsLeft = useAnimation(); // Controls for left animation
   const controlsRight = useAnimation(); // Controls for right animation
@@ -18,7 +18,7 @@ const Home = () => {
   //component ın görünüp görünmemesini ayarlıyor.
   const requestChange = (isData) => {
     setShowComponent(isData);
-  }
+  };
 
   // Decode the JWT token
   const decodedToken = decode();
@@ -39,11 +39,21 @@ const Home = () => {
   return (
     <Container component="main">
       {loading ? (
-        <Grid container justifyContent="center" alignItems="center" height="100vh">
+        <Grid
+          container
+          justifyContent="center"
+          alignItems="center"
+          height="100vh"
+        >
           <CircularProgress size={60} />
         </Grid>
       ) : (
-        <Grid container spacing={2} alignContent="center" justifyContent="center" >
+        <Grid
+          container
+          spacing={2}
+          alignContent="center"
+          justifyContent="center"
+        >
           <Grid item xs={12} md={8}>
             <motion.div
               initial={{ opacity: 0, x: -200 }}

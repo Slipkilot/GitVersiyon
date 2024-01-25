@@ -10,11 +10,11 @@ import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { decode } from "../../Services/JwtDecoder";
+import { decode } from "../../Services/JwtDecoder.jsx";
 import PersonIcon from "@mui/icons-material/Person";
 import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
 import { useSelector } from "react-redux";
-import Groups3Icon from '@mui/icons-material/Groups3';
+import Groups3Icon from "@mui/icons-material/Groups3";
 
 export const Header = () => {
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -77,17 +77,17 @@ export const Header = () => {
             TeamPulse
           </Typography>
           <Typography
-        variant="h2"
-        sx={{
-          fontSize: "1.2vw", 
-          marginRight: "35vw",
-          marginTop: "3px",
-          fontFamily: "Century Gothic, Roboto",
-          color: "#d2f5e3",
-        }}
-      >
-        {decode().companyName}
-      </Typography>
+            variant="h2"
+            sx={{
+              fontSize: "1.2vw",
+              marginRight: "35vw",
+              marginTop: "3px",
+              fontFamily: "Century Gothic, Roboto",
+              color: "#d2f5e3",
+            }}
+          >
+            {decode().companyName}
+          </Typography>
           <Box
             sx={{
               flexGrow: 0,
@@ -105,7 +105,8 @@ export const Header = () => {
                     "&:hover": {
                       color: "#ff0000",
                       transform: "scale(1.3)",
-                      transition: "color 0.6s ease-out, transform 0.3s ease-out",
+                      transition:
+                        "color 0.6s ease-out, transform 0.3s ease-out",
                     },
                   }}
                 />
@@ -114,23 +115,21 @@ export const Header = () => {
 
             {isOwner && (
               <Tooltip title="Site yöneticisi olarak giriş yaptınız" arrow>
-                <Groups3Icon 
+                <Groups3Icon
                   sx={{
                     color: "#eaecf7",
                     "&:hover": {
                       color: "#ff0000",
                       transform: "scale(1.3)",
-                      transition: "color 0.6s ease-out, transform 0.3s ease-out",
+                      transition:
+                        "color 0.6s ease-out, transform 0.3s ease-out",
                     },
                   }}
                 />
               </Tooltip>
             )}
-            
-            
 
-            
-           {!isOwner && !isAdmin && (
+            {!isOwner && !isAdmin && (
               <Tooltip title="Kullanıcı olarak giriş yaptınız" arrow>
                 <SupervisorAccountIcon
                   sx={{
@@ -138,23 +137,37 @@ export const Header = () => {
                     "&:hover": {
                       color: "#ff0000",
                       transform: "scale(1.3)",
-                      transition: "color 0.6s ease-out, transform 0.3s ease-out",
+                      transition:
+                        "color 0.6s ease-out, transform 0.3s ease-out",
                     },
                   }}
                 />
               </Tooltip>
             )}
 
-
             <Tooltip>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, ml: "2px" }}>
                 <Typography
                   variant="h5"
-                  sx={{ p: 0, mr: "3px", fontSize:"1.1rem" , color: "#d2f5e3" , fontFamily:"Century Gothic, Roboto" }}
+                  sx={{
+                    p: 0,
+                    mr: "3px",
+                    fontSize: "1.1rem",
+                    color: "#d2f5e3",
+                    fontFamily: "Century Gothic, Roboto",
+                  }}
                 >
                   {FirstNameData}
                 </Typography>
-                <Typography variant="h5" sx={{ p: 0, fontSize:"1.1rem" ,color: "#d2f5e3" , fontFamily:"Century Gothic, Roboto" }}>
+                <Typography
+                  variant="h5"
+                  sx={{
+                    p: 0,
+                    fontSize: "1.1rem",
+                    color: "#d2f5e3",
+                    fontFamily: "Century Gothic, Roboto",
+                  }}
+                >
                   {LastNameData}
                 </Typography>
                 <Avatar

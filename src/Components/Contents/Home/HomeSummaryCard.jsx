@@ -17,7 +17,7 @@ import {
 } from "@mui/icons-material";
 import EditIcon from "@mui/icons-material/Edit";
 import { useNavigate } from "react-router-dom";
-import { decode } from "../../../Services/jwtDecoder";
+import { decode } from "../../../Services/JwtDecoder.jsx";
 import { InfoOutlined } from "@mui/icons-material";
 
 const HomeSummaryCard = ({ profileData, loading }) => {
@@ -49,7 +49,14 @@ const HomeSummaryCard = ({ profileData, loading }) => {
           boxShadow: "0px 0px 8px rgba(0, 0, 0, 0.1)",
         }}
       >
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 1 }}>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            marginBottom: 1,
+          }}
+        >
           {icon}
           <Typography
             variant="body1"
@@ -139,53 +146,57 @@ const HomeSummaryCard = ({ profileData, loading }) => {
               textAlign: "center",
             }}
           >
-            {`${profileData.firstName || "Ad"} ${profileData.lastName || "Soyad"}`}
+            {`${profileData.firstName || "Ad"} ${
+              profileData.lastName || "Soyad"
+            }`}
           </Typography>
           {!isAdmin && !isOwner && (
-          <Typography
-            variant="h3"
-            sx={{
-              color: "text.primary",
-              fontFamily: "Century Gothic, Roboto",
-              marginTop: "0",
-              fontStyle: "italic",
-              fontSize: "1rem",
-            }}
-          >
-            {`${profileData.professionName || "Departman"} / ${profileData.departmentName || "Meslek"}`}
-          </Typography>
+            <Typography
+              variant="h3"
+              sx={{
+                color: "text.primary",
+                fontFamily: "Century Gothic, Roboto",
+                marginTop: "0",
+                fontStyle: "italic",
+                fontSize: "1rem",
+              }}
+            >
+              {`${profileData.professionName || "Departman"} / ${
+                profileData.departmentName || "Meslek"
+              }`}
+            </Typography>
           )}
 
-{isAdmin && (
-          <Typography
-            variant="h3"
-            sx={{
-              color: "text.primary",
-              textAlign: "center",
-              fontFamily: "Century Gothic, Roboto",
-              marginTop: "0px",
-              fontStyle: "italic",
-              fontSize: "1rem",
-            }}
-          >
-            {`Şirket Yöneticisi`}
-          </Typography>
+          {isAdmin && (
+            <Typography
+              variant="h3"
+              sx={{
+                color: "text.primary",
+                textAlign: "center",
+                fontFamily: "Century Gothic, Roboto",
+                marginTop: "0px",
+                fontStyle: "italic",
+                fontSize: "1rem",
+              }}
+            >
+              {`Şirket Yöneticisi`}
+            </Typography>
           )}
 
-{isOwner && (
-          <Typography
-            variant="h3"
-            sx={{
-              color: "text.primary",
-              textAlign: "center",
-              fontFamily: "Century Gothic, Roboto",
-              marginTop: "0px",
-              fontStyle: "italic",
-              fontSize: "1rem",
-            }}
-          >
-            {`Site Yöneticisi`}
-          </Typography>
+          {isOwner && (
+            <Typography
+              variant="h3"
+              sx={{
+                color: "text.primary",
+                textAlign: "center",
+                fontFamily: "Century Gothic, Roboto",
+                marginTop: "0px",
+                fontStyle: "italic",
+                fontSize: "1rem",
+              }}
+            >
+              {`Site Yöneticisi`}
+            </Typography>
           )}
 
           {!isAdmin && (
@@ -204,7 +215,6 @@ const HomeSummaryCard = ({ profileData, loading }) => {
               Profili Düzenle
             </Button>
           )}
-
         </Box>
       )}
 
@@ -212,14 +222,30 @@ const HomeSummaryCard = ({ profileData, loading }) => {
         <Grid
           container
           spacing={1}
-          sx={{ p:2 , mt: 1, fontFamily: "Century Gothic, Roboto", transition: "all 0.5s ease-in-out" , textAlign: "center"}}
+          sx={{
+            p: 2,
+            mt: 1,
+            fontFamily: "Century Gothic, Roboto",
+            transition: "all 0.5s ease-in-out",
+            textAlign: "center",
+          }}
         >
           {renderInfoItem("E-posta", profileData.email, <EmailIcon />)}
           {renderInfoItem("Adres", profileData.address, <HomeIcon />)}
           {renderInfoItem("Şehir", profileData.city, <LocationCityIcon />)}
           {renderInfoItem("İlçe", profileData.county, <RoomIcon />)}
-          {isAdmin && renderInfoItem("Admin olarak giriş yaptınız." , "Şirketinizin tüm kullanıcıları görüntüleyenilir ve yönetebilirsiniz.", <InfoOutlined />)}
-          {isOwner && renderInfoItem("Site yöneticisi olarak giriş yaptınız." , "Tüm şirketleri görebilir, düzenleyebilir ve aboneliklerini yönetebilirsiniz.", <InfoOutlined />)}
+          {isAdmin &&
+            renderInfoItem(
+              "Admin olarak giriş yaptınız.",
+              "Şirketinizin tüm kullanıcıları görüntüleyenilir ve yönetebilirsiniz.",
+              <InfoOutlined />
+            )}
+          {isOwner &&
+            renderInfoItem(
+              "Site yöneticisi olarak giriş yaptınız.",
+              "Tüm şirketleri görebilir, düzenleyebilir ve aboneliklerini yönetebilirsiniz.",
+              <InfoOutlined />
+            )}
         </Grid>
       )}
     </Card>

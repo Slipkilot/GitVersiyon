@@ -23,7 +23,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import { useNavigate, useLocation } from "react-router-dom";
 import * as React from "react";
 import Toolbar from "@mui/material/Toolbar";
-import { decode } from "../../Services/JwtDecoder";
+import { decode } from "../../Services/JwtDecoder.jsx";
 import ChecklistIcon from "@mui/icons-material/Checklist";
 import RequestPageIcon from "@mui/icons-material/RequestPage";
 import AddBusinessIcon from "@mui/icons-material/AddBusiness";
@@ -114,60 +114,61 @@ export const Sidebar = () => {
           </ListItem>
 
           {!isOwner && (
-          <ListItem
-            key="profile"
-            disablePadding
-            selected={isItemSelected("/profile")}
-            onClick={() => navigate("/profile")}
-          >
-            <ListItemButton>
-              <ListItemIcon>
-                <AccountCircleIcon />
-              </ListItemIcon>
-              <ListItemText
-                primary="Profil"
-                sx={{ display: open ? "flex" : "none" }}
-              />
-            </ListItemButton>
-          </ListItem>
+            <ListItem
+              key="profile"
+              disablePadding
+              selected={isItemSelected("/profile")}
+              onClick={() => navigate("/profile")}
+            >
+              <ListItemButton>
+                <ListItemIcon>
+                  <AccountCircleIcon />
+                </ListItemIcon>
+                <ListItemText
+                  primary="Profil"
+                  sx={{ display: open ? "flex" : "none" }}
+                />
+              </ListItemButton>
+            </ListItem>
           )}
-          {!isAdmin && !isOwner &&(
-          <ListItem
-                  key="request"
-                  disablePadding
-                  selected={isItemSelected("/request")}
-                  onClick={() => navigate("/request")}
-                >
-                  <ListItemButton>
-                    <ListItemIcon>
-                      <RequestPageIcon />
-                    </ListItemIcon>
-                    <ListItemText
-                      primary="İstek Gönder"
-                      sx={{ display: open ? "flex" : "none" }}
-                    />
-                  </ListItemButton>
-                </ListItem>
-                )}
+          {!isAdmin && !isOwner && (
+            <ListItem
+              key="request"
+              disablePadding
+              selected={isItemSelected("/request")}
+              onClick={() => navigate("/request")}
+            >
+              <ListItemButton>
+                <ListItemIcon>
+                  <RequestPageIcon />
+                </ListItemIcon>
+                <ListItemText
+                  primary="İstek Gönder"
+                  sx={{ display: open ? "flex" : "none" }}
+                />
+              </ListItemButton>
+            </ListItem>
+          )}
 
-{isAdmin ? ( <ListItem
-            key="request"
-            disablePadding
-            selected={isItemSelected("/requestView")}
-            onClick={() => navigate("/requestView")}
-          >
-            <ListItemButton>
-              <ListItemIcon>
-                <ChecklistIcon />
-              </ListItemIcon>
-              <ListItemText
-                primary="İstekleri Görüntüle"
-                sx={{ display: open ? "flex" : "none" }}
-              />
-            </ListItemButton>
-          </ListItem>
+          {isAdmin ? (
+            <ListItem
+              key="request"
+              disablePadding
+              selected={isItemSelected("/requestView")}
+              onClick={() => navigate("/requestView")}
+            >
+              <ListItemButton>
+                <ListItemIcon>
+                  <ChecklistIcon />
+                </ListItemIcon>
+                <ListItemText
+                  primary="İstekleri Görüntüle"
+                  sx={{ display: open ? "flex" : "none" }}
+                />
+              </ListItemButton>
+            </ListItem>
           ) : null}
-          
+
           <ListItem
             disablePadding
             sx={{ flexDirection: "column" }}
@@ -175,7 +176,6 @@ export const Sidebar = () => {
           >
             {isAdmin ? (
               <>
-                
                 <ListItemButton>
                   <ListItemIcon>
                     <PersonIcon />
@@ -241,40 +241,40 @@ export const Sidebar = () => {
           </ListItem>
           {isOwner && (
             <>
-          <ListItem
-            key="ListComanies"
-            disablePadding
-            selected={isItemSelected("/listCompanies")}
-            onClick={() => navigate("/listCompanies")}
-          >
-            <ListItemButton>
-              <ListItemIcon>
-                <BusinessIcon  />
-              </ListItemIcon>
-              <ListItemText
-                primary="Şirketleri Görüntüle"
-                sx={{ display: open ? "flex" : "none" }}
-              />
-            </ListItemButton>
-          </ListItem>
+              <ListItem
+                key="ListComanies"
+                disablePadding
+                selected={isItemSelected("/listCompanies")}
+                onClick={() => navigate("/listCompanies")}
+              >
+                <ListItemButton>
+                  <ListItemIcon>
+                    <BusinessIcon />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary="Şirketleri Görüntüle"
+                    sx={{ display: open ? "flex" : "none" }}
+                  />
+                </ListItemButton>
+              </ListItem>
 
-          <ListItem
-            key="addCompany"
-            disablePadding
-            selected={isItemSelected("/addCompany")}
-            onClick={() => navigate("/addCompany")}
-          >
-            <ListItemButton>
-              <ListItemIcon>
-                <AddBusinessIcon />
-              </ListItemIcon>
-              <ListItemText
-                primary="Şirket Ekle"
-                sx={{ display: open ? "flex" : "none" }}
-              />
-            </ListItemButton>
-          </ListItem>
-          </>
+              <ListItem
+                key="addCompany"
+                disablePadding
+                selected={isItemSelected("/addCompany")}
+                onClick={() => navigate("/addCompany")}
+              >
+                <ListItemButton>
+                  <ListItemIcon>
+                    <AddBusinessIcon />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary="Şirket Ekle"
+                    sx={{ display: open ? "flex" : "none" }}
+                  />
+                </ListItemButton>
+              </ListItem>
+            </>
           )}
         </List>
         <List sx={{ marginTop: "auto" }}>
@@ -295,22 +295,22 @@ export const Sidebar = () => {
             </ListItemButton>
           </ListItem>
           {!isOwner && (
-          <ListItem
-            key="contact"
-            disablePadding
-            selected={isItemSelected("/contact")}
-            onClick={() => navigate("/contact")}
-          >
-            <ListItemButton>
-              <ListItemIcon>
-                <EmailIcon />
-              </ListItemIcon>
-              <ListItemText
-                primary="İletişim"
-                sx={{ display: open ? "flex" : "none" }}
-              />
-            </ListItemButton>
-          </ListItem>
+            <ListItem
+              key="contact"
+              disablePadding
+              selected={isItemSelected("/contact")}
+              onClick={() => navigate("/contact")}
+            >
+              <ListItemButton>
+                <ListItemIcon>
+                  <EmailIcon />
+                </ListItemIcon>
+                <ListItemText
+                  primary="İletişim"
+                  sx={{ display: open ? "flex" : "none" }}
+                />
+              </ListItemButton>
+            </ListItem>
           )}
           <ListItem
             key="logout"

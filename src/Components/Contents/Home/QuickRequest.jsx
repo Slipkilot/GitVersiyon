@@ -22,7 +22,7 @@ import {
   changeRequestStatus,
   getAllRequests,
 } from "../../../Services/apis/EmployeeOperations/AdministorOperations";
-import { decode } from "../../../Services/jwtDecoder";
+import { decode } from "../../../Services/JwtDecoder.jsx";
 
 const StyledTableContainer = styled(TableContainer)({
   borderRadius: 8,
@@ -30,7 +30,7 @@ const StyledTableContainer = styled(TableContainer)({
   overflow: "hidden",
 });
 
-const QuickRequests = ({requestChange}) => {
+const QuickRequests = ({ requestChange }) => {
   const [requests, setRequests] = useState([]);
   const [showComponent, setShowComponent] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -91,9 +91,7 @@ const QuickRequests = ({requestChange}) => {
         (message, error) => {
           if (message) {
             toast.success(
-              `Talep ${
-                processResult ? "onaylanma" : "reddi"
-              } başarılıdır.`
+              `Talep ${processResult ? "onaylanma" : "reddi"} başarılıdır.`
             );
             setRequests((prevRequests) =>
               prevRequests.filter((request) => request.id !== id)
@@ -120,10 +118,22 @@ const QuickRequests = ({requestChange}) => {
 
   return (
     <Slide direction="up" in={showComponent} mountOnEnter unmountOnExit>
-      <Card sx={{ p: 1, borderRadius: 4, display: "block", boxShadow: "0px 0px 12px rgba(0, 0, 0, 0.1)" }}>
+      <Card
+        sx={{
+          p: 1,
+          borderRadius: 4,
+          display: "block",
+          boxShadow: "0px 0px 12px rgba(0, 0, 0, 0.1)",
+        }}
+      >
         <CardContent>
           <Box>
-            <Typography variant="h2" sx={{fontSize:"1rem", marginBottom: "0.7rem"}}>Bekleyen Talepler</Typography>
+            <Typography
+              variant="h2"
+              sx={{ fontSize: "1rem", marginBottom: "0.7rem" }}
+            >
+              Bekleyen Talepler
+            </Typography>
           </Box>
           <StyledTableContainer>
             <Table>
@@ -141,35 +151,39 @@ const QuickRequests = ({requestChange}) => {
                     <TableCell align="center">
                       {request.amount} {request.currency || "-"}
                     </TableCell>
-                    <TableCell align="center">                     
-                          {request.status === "Waiting" ? (
-                            <>
-                              <Button
-                                variant="contained"
-                                color="success"
-                                size="small"
-                                onClick={() => handleRequestAction(request.id, true)}
-                              >
-                                Onayla
-                              </Button>
-                              <Button
-                                variant="contained"
-                                color="error"
-                                size="small"
-                                onClick={() => handleRequestAction(request.id, false)}
-                                style={{ marginLeft: "4px" }}
-                              >
-                                Reddet
-                              </Button>
-                            </>
-                          ) : (
-                            <Chip
-                              label="Talep zaten işlenmiştir."
-                              color="error"
-                              variant="outlined"
-                              sx={{ minWidth: "240px" }}
-                            />
-                          )}
+                    <TableCell align="center">
+                      {request.status === "Waiting" ? (
+                        <>
+                          <Button
+                            variant="contained"
+                            color="success"
+                            size="small"
+                            onClick={() =>
+                              handleRequestAction(request.id, true)
+                            }
+                          >
+                            Onayla
+                          </Button>
+                          <Button
+                            variant="contained"
+                            color="error"
+                            size="small"
+                            onClick={() =>
+                              handleRequestAction(request.id, false)
+                            }
+                            style={{ marginLeft: "4px" }}
+                          >
+                            Reddet
+                          </Button>
+                        </>
+                      ) : (
+                        <Chip
+                          label="Talep zaten işlenmiştir."
+                          color="error"
+                          variant="outlined"
+                          sx={{ minWidth: "240px" }}
+                        />
+                      )}
                       {/* {request.employeeName === currentUserFullName && (
                         <Chip
                           label="Kendi taleplerinizi onaylayamazsınız."

@@ -22,13 +22,12 @@ import {
   Search as SearchIcon,
 } from "@mui/icons-material";
 
-
 import {
   AllInclusive as AllInclusiveIcon,
   HourglassEmpty as HourglassEmptyIcon,
   CheckCircleOutline as CheckCircleOutlineIcon,
   Cancel as CancelIcon,
-} from '@mui/icons-material';
+} from "@mui/icons-material";
 
 import { useDispatch, useSelector } from "react-redux";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
@@ -37,11 +36,11 @@ import {
   changeRequestStatus,
   getAllRequests,
 } from "../../../Services/apis/EmployeeOperations/AdministorOperations";
-import { decode } from "../../../Services/jwtDecoder";
+import { decode } from "../../../Services/JwtDecoder.jsx";
 import Collapse from "@mui/material/Collapse";
 import ExpandIcon from "@mui/icons-material/Expand";
-import DoneAllIcon from '@mui/icons-material/DoneAll';
-import BlockIcon from '@mui/icons-material/Block';
+import DoneAllIcon from "@mui/icons-material/DoneAll";
+import BlockIcon from "@mui/icons-material/Block";
 
 const StyledTableContainer = styled(TableContainer)({
   borderRadius: "16px",
@@ -73,9 +72,7 @@ const RequestView = () => {
   }, [requests, dispatch]);
 
   useEffect(() => {
-    if (
-      allRequests.data.advancePayments
-    ) {
+    if (allRequests.data.advancePayments) {
       const newData = allRequests.data.advancePayments.map((element) => ({
         id: element.processType + element.advancePaymentId,
         requestId: element.advancePaymentId,
@@ -88,9 +85,9 @@ const RequestView = () => {
         description: element.description,
         submissionDate: element.submissionDate,
       }));
-  
+
       newData.sort((a, b) => b.requestId - a.requestId); // Reverse sort by requestId
-  
+
       setRequests(newData);
       setFilteredRequests(newData);
     }
@@ -158,11 +155,15 @@ const RequestView = () => {
     let filteredData = requests;
 
     if (hideOwn) {
-      filteredData = filteredData.filter((request) => request.employeeName !== currentUserFullName);
+      filteredData = filteredData.filter(
+        (request) => request.employeeName !== currentUserFullName
+      );
     }
 
     if (status) {
-      filteredData = filteredData.filter((request) => request.status === status);
+      filteredData = filteredData.filter(
+        (request) => request.status === status
+      );
     }
 
     if (term) {
@@ -197,39 +198,44 @@ const RequestView = () => {
       >
         <Typography variant="h5">Avans Talepleri</Typography>
         <Box>
-
-        <IconButton sx={{ padding: 0 }} aria-label="search">
-              <SearchIcon />
-            </IconButton>
-            <StyledInputBase
-              placeholder="Çalışan Adına Göre Ara"
-              onChange={handleSearchChange}
-              value={searchTerm}
-              sx={{ padding: "5px" , width: '200px' , border: '1px solid #aaa', marginRight: "500px" , borderRadius: '20px', }}
-            />
+          <IconButton sx={{ padding: 0 }} aria-label="search">
+            <SearchIcon />
+          </IconButton>
+          <StyledInputBase
+            placeholder="Çalışan Adına Göre Ara"
+            onChange={handleSearchChange}
+            value={searchTerm}
+            sx={{
+              padding: "5px",
+              width: "200px",
+              border: "1px solid #aaa",
+              marginRight: "500px",
+              borderRadius: "20px",
+            }}
+          />
           <ToggleButtonGroup
-  value={selectedStatus}
-  exclusive
-  onChange={handleStatusChange}
-  size="small"
->
-  <ToggleButton value={null}>
-    <AllInclusiveIcon sx={{ marginRight: 0.5 }} />
-    Tümü
-  </ToggleButton>
-  <ToggleButton value="Waiting">
-    <HourglassEmptyIcon sx={{ marginRight: 0.5 }} />
-    Onay Bekliyor
-  </ToggleButton>
-  <ToggleButton value="Approved">
-    <CheckCircleOutlineIcon sx={{ marginRight: 0.5 }} />
-    Onaylandı
-  </ToggleButton>
-  <ToggleButton value="Rejected">
-    <CancelIcon sx={{ marginRight: 0.5 }} />
-    Reddedildi
-  </ToggleButton>
-</ToggleButtonGroup>
+            value={selectedStatus}
+            exclusive
+            onChange={handleStatusChange}
+            size="small"
+          >
+            <ToggleButton value={null}>
+              <AllInclusiveIcon sx={{ marginRight: 0.5 }} />
+              Tümü
+            </ToggleButton>
+            <ToggleButton value="Waiting">
+              <HourglassEmptyIcon sx={{ marginRight: 0.5 }} />
+              Onay Bekliyor
+            </ToggleButton>
+            <ToggleButton value="Approved">
+              <CheckCircleOutlineIcon sx={{ marginRight: 0.5 }} />
+              Onaylandı
+            </ToggleButton>
+            <ToggleButton value="Rejected">
+              <CancelIcon sx={{ marginRight: 0.5 }} />
+              Reddedildi
+            </ToggleButton>
+          </ToggleButtonGroup>
         </Box>
       </Box>
       <StyledTableContainer component={Paper}>
@@ -247,7 +253,10 @@ const RequestView = () => {
           </TableHead>
           <TableBody>
             {(rowsPerPage > 0
-              ? filteredRequests.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              ? filteredRequests.slice(
+                  page * rowsPerPage,
+                  page * rowsPerPage + rowsPerPage
+                )
               : filteredRequests
             ).map((request) => (
               <React.Fragment key={request.id}>
@@ -347,14 +356,16 @@ const RequestView = () => {
                       {/* Check if the request is not created by the current user */}
                       {request.employeeName !== currentUserFullName && (
                         <>
-                          {request.status === 'Waiting' ? (
+                          {request.status === "Waiting" ? (
                             <>
                               <Button
                                 variant="contained"
                                 size="small"
                                 startIcon={<ExpandIcon />}
-                                onClick={() => handleToggleDetailedView(request.id)}
-                                sx={{ marginRight: '3px' }}
+                                onClick={() =>
+                                  handleToggleDetailedView(request.id)
+                                }
+                                sx={{ marginRight: "3px" }}
                               >
                                 Detaylar
                               </Button>
@@ -364,8 +375,14 @@ const RequestView = () => {
                                 color="success"
                                 size="small"
                                 startIcon={<CheckIcon />}
-                                onClick={() => handleRequestAction(request.id, true, 'onayla')}
-                                sx={{ marginRight: '3px' }}
+                                onClick={() =>
+                                  handleRequestAction(
+                                    request.id,
+                                    true,
+                                    "onayla"
+                                  )
+                                }
+                                sx={{ marginRight: "3px" }}
                               >
                                 Onayla
                               </Button>
@@ -375,7 +392,13 @@ const RequestView = () => {
                                 color="error"
                                 size="small"
                                 startIcon={<ClearIcon />}
-                                onClick={() => handleRequestAction(request.id, false, 'reddet')}
+                                onClick={() =>
+                                  handleRequestAction(
+                                    request.id,
+                                    false,
+                                    "reddet"
+                                  )
+                                }
                               >
                                 Reddet
                               </Button>
@@ -383,10 +406,18 @@ const RequestView = () => {
                           ) : (
                             <Chip
                               label="Talep zaten işlenmiştir."
-                              icon={<DoneAllIcon sx={{ fontSize: 16, marginRight: 1, color: 'error.main' }} />}
+                              icon={
+                                <DoneAllIcon
+                                  sx={{
+                                    fontSize: 16,
+                                    marginRight: 1,
+                                    color: "error.main",
+                                  }}
+                                />
+                              }
                               color="error"
                               variant="outlined"
-                              sx={{ minWidth: "280px"}}
+                              sx={{ minWidth: "280px" }}
                             />
                           )}
                         </>
@@ -394,10 +425,18 @@ const RequestView = () => {
                       {request.employeeName === currentUserFullName && (
                         <Chip
                           label="Kendi taleplerinizi onaylayamazsınız."
-                          icon={<BlockIcon sx={{ fontSize: 16, marginRight: 1, color: 'error.main' }} />}
+                          icon={
+                            <BlockIcon
+                              sx={{
+                                fontSize: 16,
+                                marginRight: 1,
+                                color: "error.main",
+                              }}
+                            />
+                          }
                           color="error"
                           variant="outlined"
-                          sx={{minWidth: "280px" }}
+                          sx={{ minWidth: "280px" }}
                         />
                       )}
                     </TableCell>
@@ -410,32 +449,63 @@ const RequestView = () => {
                     <Box
                       sx={{
                         margin: 1,
-                        overflow: 'hidden',
-                        transition: 'all 0.6s ease-in-out',
-                        border: '1px solid #e0e0e0',
-                        borderRadius: '8px',
+                        overflow: "hidden",
+                        transition: "all 0.6s ease-in-out",
+                        border: "1px solid #e0e0e0",
+                        borderRadius: "8px",
                         backgroundColor: "background.paper",
-                        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-                        padding: '16px',
+                        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+                        padding: "16px",
                       }}
                     >
-                      <Typography variant="body1" sx={{ marginBottom: 1, color: 'text.primary', fontWeight: 600 }}>
+                      <Typography
+                        variant="body1"
+                        sx={{
+                          marginBottom: 1,
+                          color: "text.primary",
+                          fontWeight: 600,
+                        }}
+                      >
                         <strong>İsim:</strong> {request.employeeName}
                       </Typography>
-                      <Typography variant="body1" sx={{ marginBottom: 1, color: 'text.primary' }}>
+                      <Typography
+                        variant="body1"
+                        sx={{ marginBottom: 1, color: "text.primary" }}
+                      >
                         <strong>Harcama Türü:</strong> {request.type}
                       </Typography>
-                      <Typography variant="body1" sx={{ marginBottom: 1, color: 'text.primary' }}>
-                        <strong>Miktar:</strong> {request.amount} {request.currency}
+                      <Typography
+                        variant="body1"
+                        sx={{ marginBottom: 1, color: "text.primary" }}
+                      >
+                        <strong>Miktar:</strong> {request.amount}{" "}
+                        {request.currency}
                       </Typography>
-                      <Typography variant="body1" sx={{ marginBottom: 1, color: 'text.primary' }}>
+                      <Typography
+                        variant="body1"
+                        sx={{ marginBottom: 1, color: "text.primary" }}
+                      >
                         <strong>Açıklama:</strong> {request.description}
                       </Typography>
                       {/* Additional styles for Typography elements */}
-                      <Typography variant="caption" sx={{ color: 'text.primary', marginTop: 2, fontStyle: 'italic' }}>
+                      <Typography
+                        variant="caption"
+                        sx={{
+                          color: "text.primary",
+                          marginTop: 2,
+                          fontStyle: "italic",
+                        }}
+                      >
                         Gönderim Tarihi: {request.submissionDate}
                       </Typography>
-                      <Typography variant="caption" sx={{ color: 'text.primary', marginTop: 2, fontStyle: 'italic' }}>
+                      <Typography
+                        variant="caption"
+                        sx={{
+                          color: "text.primary",
+                          marginTop: 2,
+                          fontStyle: "italic",
+                        }}
+                      >
                         Durum: {request.status}
                       </Typography>
                     </Box>
@@ -445,7 +515,7 @@ const RequestView = () => {
             ))}
           </TableBody>
         </Table>
-        
+
         <TablePagination
           rowsPerPageOptions={[5, 10, 25, 100]}
           component="div"
@@ -458,13 +528,13 @@ const RequestView = () => {
         />
       </StyledTableContainer>
       <label>
-            <input
-              type="checkbox"
-              checked={hideOwnRequests}
-              onChange={handleHideOwnRequestsChange}
-            />
-            Kendi Taleplerimi Gizle
-          </label>
+        <input
+          type="checkbox"
+          checked={hideOwnRequests}
+          onChange={handleHideOwnRequestsChange}
+        />
+        Kendi Taleplerimi Gizle
+      </label>
     </Box>
   );
 };

@@ -19,11 +19,11 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { MoonLoader } from "react-spinners";
 import { authLogin, logOut } from "../../Services/apis/authService";
-import { toast} from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch } from "react-redux";
 import { setThema } from "../../Redux/Reducers/roleThemaReducer";
-import { decode } from "../../Services/JwtDecoder";
+import { decode } from "../../Services/JwtDecoder.jsx";
 
 function Copyright(props) {
   return (
@@ -52,16 +52,15 @@ export const Login = () => {
   const [wrong, setWrong] = useState(false);
   const navigate = useNavigate();
   const { search } = useLocation();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const queryParams = new URLSearchParams(search);
-  const error = queryParams.get('error');
+  const error = queryParams.get("error");
   const handleChange = () => {
     setWrong(false);
   };
   useEffect(() => {
     logOut();
-    if(error)
-      toast.error("Yetksiz giriş.")
+    if (error) toast.error("Yetksiz giriş.");
   }, []);
 
   const handleSubmit = async (event) => {
@@ -72,15 +71,15 @@ export const Login = () => {
     authLogin(data.get("email"), data.get("password"), (message, error) => {
       setLoading(false);
       if (message) {
-        dispatch(setThema(decode().currentRole))
+        dispatch(setThema(decode().currentRole));
         toast.success("Giriş yapıldı. Hoşgeldiniz");
         navigate("/home");
-      } else if(error){
+      } else if (error) {
         setWrong(true);
         console.log(error);
         toast.error(error);
-      }else{
-        toast.warning("Bir sorun oluştu tekrar deneyiniz")
+      } else {
+        toast.warning("Bir sorun oluştu tekrar deneyiniz");
       }
     });
   };

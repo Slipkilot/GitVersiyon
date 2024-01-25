@@ -23,7 +23,7 @@ export const authLogin = async (email, password, callback) => {
     const errorResponse = error.response ? error.response.data : null;
     badResponse = errorResponse;
   }
-  callback(message,badResponse);
+  callback(message, badResponse);
 };
 
 export const logOut = () => {
