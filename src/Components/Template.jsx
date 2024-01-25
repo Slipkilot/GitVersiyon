@@ -25,7 +25,7 @@ import ListCompanies from "./Contents/SiteOwnerSide/SiteOwnerHome/ListCompanies.
 import AddCompany from "./Contents/SiteOwnerSide/AddCompany/AddCompany.jsx";
 import EditCompany from "./Contents/SiteOwnerSide/EditCompany.jsx/EditCompany.jsx";
 import AccessDenied from "./AccessDenied.jsx"
-import { decode } from "../Services/JwtDecoder";
+import  {decode } from "../Services/JwtDecoder.jsx";
 
 export const Template = () => {
   const [isAdmin, setIsAdmin] = useState(false);
