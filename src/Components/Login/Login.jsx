@@ -23,7 +23,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch } from "react-redux";
 import { setThema } from "../../Redux/Reducers/roleThemaReducer";
-import { decode } from "../../Services/JwtDecoder.jsx";
+import { decode } from "../../Services/jwtDecoder.jsx";
 
 function Copyright(props) {
   return (

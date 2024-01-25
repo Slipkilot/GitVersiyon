@@ -1,4 +1,4 @@
-import { decode } from "../../Services/JwtDecoder.jsx";
+import { decode } from "../../Services/jwtDecoder.jsx";
 
 export const setThema = (value) => ({
   type: "CHANGE_VALUE",

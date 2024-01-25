@@ -22,7 +22,7 @@ import {
   changeRequestStatus,
   getAllRequests,
 } from "../../../Services/apis/EmployeeOperations/AdministorOperations";
-import { decode } from "../../../Services/JwtDecoder.jsx";
+import { decode } from "../../../Services/jwtDecoder.jsx";
 
 const StyledTableContainer = styled(TableContainer)({
   borderRadius: 8,

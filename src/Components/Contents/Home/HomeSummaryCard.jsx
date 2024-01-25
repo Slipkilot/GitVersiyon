@@ -17,7 +17,7 @@ import {
 } from "@mui/icons-material";
 import EditIcon from "@mui/icons-material/Edit";
 import { useNavigate } from "react-router-dom";
-import { decode } from "../../../Services/JwtDecoder.jsx";
+import { decode } from "../../../Services/jwtDecoder.jsx";
 import { InfoOutlined } from "@mui/icons-material";
 
 const HomeSummaryCard = ({ profileData, loading }) => {

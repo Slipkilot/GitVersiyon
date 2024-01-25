@@ -23,7 +23,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import { useNavigate, useLocation } from "react-router-dom";
 import * as React from "react";
 import Toolbar from "@mui/material/Toolbar";
-import { decode } from "../../Services/JwtDecoder.jsx";
+import { decode } from "../../Services/jwtDecoder.jsx";
 import ChecklistIcon from "@mui/icons-material/Checklist";
 import RequestPageIcon from "@mui/icons-material/RequestPage";
 import AddBusinessIcon from "@mui/icons-material/AddBusiness";

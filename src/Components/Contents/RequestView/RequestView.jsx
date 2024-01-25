@@ -36,7 +36,7 @@ import {
   changeRequestStatus,
   getAllRequests,
 } from "../../../Services/apis/EmployeeOperations/AdministorOperations";
-import { decode } from "../../../Services/JwtDecoder.jsx";
+import { decode } from "../../../Services/jwtDecoder.jsx";
 import Collapse from "@mui/material/Collapse";
 import ExpandIcon from "@mui/icons-material/Expand";
 import DoneAllIcon from "@mui/icons-material/DoneAll";

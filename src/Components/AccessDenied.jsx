@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Container, Typography, Box, Paper, Grid } from "@mui/material";
 import { Block as BlockIcon, Home as HomeIcon } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import { decode } from "../Services/JwtDecoder.jsx";
+import { decode } from "../Services/jwtDecoder.jsx";
 
 const AccessDenied = () => {
   // Decode the JWT token

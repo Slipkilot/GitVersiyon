@@ -24,8 +24,8 @@ import QuickRequests from "./Contents/Home/QuickRequest.jsx";
 import ListCompanies from "./Contents/SiteOwnerSide/SiteOwnerHome/ListCompanies.jsx";
 import AddCompany from "./Contents/SiteOwnerSide/AddCompany/AddCompany.jsx";
 import EditCompany from "./Contents/SiteOwnerSide/EditCompany.jsx/EditCompany.jsx";
-import AccessDenied from "./AccessDenied.jsx"
-import  {decode } from "../Services/JwtDecoder.jsx";
+import AccessDenied from "./AccessDenied.jsx";
+import { decode } from "../Services/jwtDecoder.jsx";
 
 export const Template = () => {
   const [isAdmin, setIsAdmin] = useState(false);
@@ -38,15 +38,13 @@ export const Template = () => {
       navigate("/login");
     }
     setIsAdmin(decode().currentRole === "Admin");
-    setIsOwner(decode().currentRole === "SiteAdmin"); 
+    setIsOwner(decode().currentRole === "SiteAdmin");
   }, []);
 
   useEffect(() => {
     const darkModeCondition = sessionStorage.getItem("DarkMode");
-    if(darkModeCondition == "true")
-    dispatch(setCheckboxValue(true));
+    if (darkModeCondition == "true") dispatch(setCheckboxValue(true));
   }, []);
-
 
   console.log(decode());
 
@@ -70,7 +68,6 @@ export const Template = () => {
           <Route path="/profileChange" element={<ProfileUpdate />} />
           <Route path="/request" element={<RequestForm />} />
 
-          
           {isAdmin ? (
             <>
               <Route path="/addPersonal" element={<AddPersonal />} />
@@ -87,28 +84,25 @@ export const Template = () => {
             </>
           ) : null}
 
-
           {isOwner ? (
             <>
-          <Route path="/listCompanies" element={<ListCompanies />} />
-          <Route path="/addCompany" element={<AddCompany />} />
-          <Route path="/editCompany/:id" element={<EditCompany />} />
-          </>
-          ) : 
-          <>
-          <Route path="/listCompanies" element={<AccessDenied />} />
-          <Route path="/addCompany" element={<AccessDenied />} />
-          <Route path="/editCompany/:id" element={<AccessDenied />} />
-          </>
-          }
-
+              <Route path="/listCompanies" element={<ListCompanies />} />
+              <Route path="/addCompany" element={<AddCompany />} />
+              <Route path="/editCompany/:id" element={<EditCompany />} />
+            </>
+          ) : (
+            <>
+              <Route path="/listCompanies" element={<AccessDenied />} />
+              <Route path="/addCompany" element={<AccessDenied />} />
+              <Route path="/editCompany/:id" element={<AccessDenied />} />
+            </>
+          )}
 
           <Route path="/profile/passwordChange" element={<PasswordChange />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="/existingRequests" element={<ExistingRequests />} />
           <Route path="/quickRequests" element={<QuickRequests />} />
-
         </Routes>
       </Box>
     </Box>

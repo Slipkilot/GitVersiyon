@@ -3,7 +3,7 @@ import { motion, useAnimation } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { profileSummary } from "../../../Services/apis/profileService";
-import { decode } from "../../../Services/JwtDecoder.jsx";
+import { decode } from "../../../Services/jwtDecoder.jsx";
 import HomeSummaryCard from "./HomeSummaryCard";
 import QuickRequests from "./QuickRequest";
 
